@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -33,6 +34,18 @@ public class VoteStatisticsController extends BaseController{
         result.put("pd",pageData);
         return result;
     }
+    @RequestMapping("voteItem.do")
+    public void voteItem(){
+        ModelAndView mv = this.getModelAndView();
+        String a = request.getRemoteAddr();
+        String b = request.getRequestURI();
+        String c = request.getRequestURL().toString();
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+//        return mv;
+    }
+
 //    @Param("url")String url
     @RequestMapping("createEWM.do")
     public void createEWM(){

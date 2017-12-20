@@ -37,4 +37,19 @@ public class LoginController extends BaseController{
         }
         return "redirect:/";
     }
+    @RequestMapping(value = "createVote.do",method = RequestMethod.POST)
+    public String vote(){
+        PageData pd = this.getPageData();
+        System.out.println(pd);
+        try{
+            PageData pageData = adminService.createVote(pd);
+
+        }catch (Exception e){
+
+        }
+        return null;
+    }
+
+
+
 }
