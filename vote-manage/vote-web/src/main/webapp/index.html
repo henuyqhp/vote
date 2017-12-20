@@ -11,7 +11,8 @@
 <script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/jquery.raccordion.js" type="text/javascript"></script>
 	<script src="js/jquery.animation.easing.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="css/raccordion.css" />
+	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="css/raccordion.css" />
     <script type="text/javascript">
         $(window).load(function () {
             $('#accordion-wrapper').raccordion({
@@ -20,7 +21,19 @@
                 sliderHeight: 300,
                 autoCollapse: false
             });
+            alert(returnCitySN["cip"]+','+returnCitySN["cname"])
+			cip = returnCitySN["cip"];
+            cname = returnCitySN["cname"]
+            $.post("/isVote.do",{ip:cip,city:cname,voteid:12},function (data) {
+				if (data.code == 1){
+				    alert("开始投票")
+				}else{
+				    alert("已经投过票")
+					$(location).attr("href","https://www.baidu.com")
+				}
+            })
         });
+
     </script>
 </head>
 <body>

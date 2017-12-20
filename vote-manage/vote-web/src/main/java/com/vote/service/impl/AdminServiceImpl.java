@@ -34,4 +34,9 @@ public class AdminServiceImpl implements AdminService{
         pageData.put(Const.CODE,ResponseCode.成功.getCode());
         return pageData;
     }
+
+    @Override
+    public PageData createVote(PageData pd) {
+        return null;
+    }
 }
