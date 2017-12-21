@@ -1,10 +1,13 @@
 package com.vote.service.impl;
 
 import com.vote.dao.UserMapper;
+import com.vote.dao.VoteMapper;
 import com.vote.pojo.User;
+import com.vote.pojo.Vote;
 import com.vote.service.backend.AdminService;
 import com.vote.util.Const;
 import com.vote.util.PageData;
+import com.vote.util.enums.Enable;
 import com.vote.util.enums.ResponseCode;
 import com.vote.util.enums.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,8 @@ import org.springframework.stereotype.Service;
 public class AdminServiceImpl implements AdminService{
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private VoteMapper voteMapper;
     @Override
     public PageData login(PageData pd) {
         PageData pageData = new PageData();
@@ -33,5 +38,22 @@ public class AdminServiceImpl implements AdminService{
         pageData.put(Const.USER,user);
         pageData.put(Const.CODE,ResponseCode.成功.getCode());
         return pageData;
+    }
+
+    @Override
+    public ResponseCode createVote(PageData pd) {
+        PageData pageData = new PageData();
+        Vote vote = new Vote();
+        vote.setId(pd.getInt("voteId"));
+        vote.setName(pd.getString("voteName"));
+        vote.setDescription(pd.getString("voteDescription"));
+        vote.setEcreator(pd.getInt("userId"));
+        vote.setEnable(Enable.可用.getCode());
+        int count = voteMapper.insert(vote);
+        if (count>0){
+            return ResponseCode.成功;
+        }
+        return ResponseCode.错误;
+
     }
 }

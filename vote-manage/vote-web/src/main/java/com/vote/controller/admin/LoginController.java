@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/")
@@ -38,16 +40,21 @@ public class LoginController extends BaseController{
         return "redirect:/";
     }
     @RequestMapping(value = "createVote.do",method = RequestMethod.POST)
-    public String vote(){
+    public Map<String,Object> vote(){
+
+        Map<String,Object> result = new HashMap<>();
+        User user = (User) session.getAttribute(Const.USER);
         PageData pd = this.getPageData();
+        pd.put("userid",user);
         System.out.println(pd);
         try{
-            PageData pageData = adminService.createVote(pd);
+            ResponseCode pageData = adminService.createVote(pd);
 
         }catch (Exception e){
-
+            logger.error(e.toString());
+            result.put(Const.CODE,ResponseCode.异常.getCode());
         }
-        return null;
+        return result;
     }
 
 
