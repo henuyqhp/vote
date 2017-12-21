@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.ServletContext;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -38,29 +37,55 @@ public class VoteStatisticsController extends BaseController{
         result.put("pd",pageData);
         return result;
     }
-    @RequestMapping("isVote.do")
-    @ResponseBody
-    public Map<String,Object> voteItem(@Param("ip")String ip,@Param("city")String city,@Param("id")String voteid){
-        Map<String,Object> result = new HashMap<>();
+
+
+
+    @RequestMapping("vote.do")
+    public ModelAndView vote(){
+        ModelAndView mv = this.getModelAndView();
+        String name = request.getParameter("name");
+        PageData pageData = voteStatisticsService.getBollotJSON(name);
+        mv.addObject("pd",pageData);
+        mv.setViewName("vote");
+        return mv;
+    }
+
+    @RequestMapping(value = "doVote.do",method = RequestMethod.POST)
+    public ModelAndView doVote(){
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = this.getPageData();
+        System.out.println(pd);
+        if (isVote(pd.getString("cip"),pd.getString("cname"),pd.getString("vote"))){
+            ResponseCode rcode= voteStatisticsService.doVote(pd);
+            if (rcode == ResponseCode.成功){
+                mv.setViewName("success");
+            }else{
+                mv.setViewName("faile");
+            }
+        }else{
+            mv.setViewName("hasVote");
+        }
+        return mv;
+    }
+    public boolean isVote(String ip,String city,String voteid){
         ServletContext sc = request.getSession().getServletContext();
         VoteSingleAction vsa = (VoteSingleAction) sc.getAttribute(voteid);
         if (vsa == null) {
             vsa = VoteSingleAction.getCleanVoteSingleAction();
         }
         if (vsa.put(city,ip)){
-            result.put(Const.CODE, ResponseCode.成功.getCode());
+            sc.setAttribute(voteid,vsa);
+            return true;
         }else{
-            result.put(Const.CODE, ResponseCode.错误.getCode());
+            sc.setAttribute(voteid,vsa);
+            return false;
         }
-        sc.setAttribute(voteid,vsa);
-        return result;
     }
-
-//    @Param("url")String url
+    //    @Param("url")String url
     @RequestMapping("createEWM.do")
     public void createEWM(){
 //        String url = "http://10.12.26.49:8080/jsp/a/show.jsp";
-        String url = "http://10.12.26.49:8080/index.html";
+        String url = "http://10.12.26.49:8080/vote.do?name=1";
         ByteArrayOutputStream out= QRCode.from(url).to(ImageType.PNG).stream();
         response.reset();
         response.setContentType("image/png");
@@ -76,4 +101,6 @@ public class VoteStatisticsController extends BaseController{
             e.printStackTrace();
         }
     }
+
+
 }

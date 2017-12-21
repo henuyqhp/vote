@@ -33,7 +33,8 @@
     </mvc:annotation-driven>
     <!-- jsp试图解析器,配置试图解析器的前缀和后缀-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp"/>
+        <!--<property name="prefix" value="/WEB-INF/jsp"/>-->
+        <property name="prefix" value=""/>
         <property name="suffix" value=".jsp"/>
     </bean>
     <!-- 文件上传 -->

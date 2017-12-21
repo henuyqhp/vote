@@ -32,9 +32,9 @@
       ip, vote, voteItem, 
       type, enable, createTime
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{votetime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, now(),
       #{ip,jdbcType=VARCHAR}, #{vote,jdbcType=INTEGER}, #{voteitem,jdbcType=INTEGER}, 
-      #{type,jdbcType=INTEGER}, #{enable,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}
+      #{type,jdbcType=INTEGER}, #{enable,jdbcType=INTEGER},now()
       )
   </insert>
   <insert id="insertSelective" parameterType="com.vote.pojo.LogVote">

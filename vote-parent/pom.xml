@@ -18,7 +18,7 @@
         <junit.version>4.12</junit.version>
         <mysql.version>5.1.6</mysql.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!--<jstl.version>1.2</jstl.version>-->
+        <jstl.version>1.2</jstl.version>
         <jdk.version>1.8</jdk.version>
         <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
         <org.mybatis.version>3.4.1</org.mybatis.version>
@@ -56,7 +56,16 @@
 
     <dependencyManagement>
         <dependencies>
-
+            <dependency>
+                <groupId>jstl</groupId>
+                <artifactId>jstl</artifactId>
+                <version>${jstl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>taglibs</groupId>
+                <artifactId>standard</artifactId>
+                <version>1.1.2</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-servlet-api</artifactId>
