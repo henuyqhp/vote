@@ -26,12 +26,15 @@ public class LoginController extends BaseController{
     @RequestMapping(value = "login.do" , method = RequestMethod.POST)
     public String login(){
         PageData pd = this.getPageData();
-        System.out.print(pd);
+        PageData pageData = null;
         try{
-            PageData pageData =adminService.login(pd);
+           pageData=adminService.login(pd);
+
+            System.out.print(pageData.getInt(Const.CODE));
             if (pageData.getInt(Const.CODE) == ResponseCode.成功.getCode()){
                 //User user = new User(pageData.get(Const.USER));
                 //session.setAttribute(Const.USER,user);
+                System.out.print("登录成功");
                 return "user/index";
             }
         }catch (Exception e){
@@ -39,6 +42,27 @@ public class LoginController extends BaseController{
         }
         return "redirect:/";
     }
+
+    @RequestMapping(value = "newUser.do",method = RequestMethod.POST)
+    private Map<String,Object> newUser(){
+
+        Map<String,Object> result = new HashMap<>();
+
+        System.out.println("增加老师");
+        PageData pd = this.getPageData();
+        System.out.println(pd);
+        PageData pageData =null;
+        try {
+            pageData = adminService.newUser(pd);
+            result.putAll(pageData);
+        } catch (Exception e) {
+            logger.error(e.toString());
+            result.put(Const.CODE, ResponseCode.异常.getCode());
+        }
+
+        return result;
+    }
+
     @RequestMapping(value = "createVote.do",method = RequestMethod.POST)
     public Map<String,Object> vote(){
 

@@ -31,7 +31,7 @@
 <div class="main-agileits">
 <!--form-stars-here-->
 		<div class="form-w3-agile">
-			<form action="UserLogin" method="post">
+			<form action="/admin/login.do" method="post">
 					<input type="text" name="username" placeholder="管理员" required="" />
 					<input type="password" name="password" placeholder="密码" required="" />
 				<div class="submit-w3l">
@@ -42,7 +42,7 @@
 		</div>
 
 	<div class="copyright w3-agile">
-		<p>© 2017 Design By </a></p>
+		<p>© 2017 Design By </p>
 	</div>
 
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>

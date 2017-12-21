@@ -7,4 +7,6 @@ public interface AdminService {
     PageData login(PageData pd);
 
     ResponseCode createVote(PageData pd);
+
+    PageData newUser(PageData pd);
 }

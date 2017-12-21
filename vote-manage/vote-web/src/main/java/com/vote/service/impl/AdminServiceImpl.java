@@ -29,6 +29,7 @@ public class AdminServiceImpl implements AdminService{
             return pageData;
         }
         User user = userMapper.selectLogin(pd);
+
         if (user == null){
             pageData.put(Const.CODE, ResponseCode.错误.getCode());
             pageData.put(Const.MSG,"密码错误");
@@ -55,5 +56,18 @@ public class AdminServiceImpl implements AdminService{
         }
         return ResponseCode.错误;
 
+    }
+
+    @Override
+    public PageData newUser(PageData pd) {
+        PageData pageData = new PageData();
+        User user = new User();
+        user.setId(pd.getInt("userId"));
+        user.setUsername(pd.getString("userName"));
+        user.setPassword(pd.getString("password"));
+        user.setEnable(Enable.可用.getCode());
+        user.setPhone();
+
+        return null;
     }
 }

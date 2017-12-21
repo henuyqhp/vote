@@ -136,6 +136,6 @@
     <include refid="Base_Column_List"/>
     FROM user
     WHERE username=#{username}
-    AND password =#{pssword}
+    AND password =#{password}
   </select>
 </mapper>
