@@ -2,7 +2,10 @@ package com.vote.controller.backend;
 
 import com.vote.controller.base.BaseController;
 import com.vote.service.backend.VoteStatisticsService;
+import com.vote.util.Const;
 import com.vote.util.PageData;
+import com.vote.util.VoteSingleAction;
+import com.vote.util.enums.ResponseCode;
 import net.glxn.qrgen.core.image.ImageType;
 import net.glxn.qrgen.javase.QRCode;
 import org.apache.ibatis.annotations.Param;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletContext;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -34,16 +38,22 @@ public class VoteStatisticsController extends BaseController{
         result.put("pd",pageData);
         return result;
     }
-    @RequestMapping("voteItem.do")
-    public void voteItem(){
-        ModelAndView mv = this.getModelAndView();
-        String a = request.getRemoteAddr();
-        String b = request.getRequestURI();
-        String c = request.getRequestURL().toString();
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println(c);
-//        return mv;
+    @RequestMapping("isVote.do")
+    @ResponseBody
+    public Map<String,Object> voteItem(@Param("ip")String ip,@Param("city")String city,@Param("id")String voteid){
+        Map<String,Object> result = new HashMap<>();
+        ServletContext sc = request.getSession().getServletContext();
+        VoteSingleAction vsa = (VoteSingleAction) sc.getAttribute(voteid);
+        if (vsa == null) {
+            vsa = VoteSingleAction.getCleanVoteSingleAction();
+        }
+        if (vsa.put(city,ip)){
+            result.put(Const.CODE, ResponseCode.成功.getCode());
+        }else{
+            result.put(Const.CODE, ResponseCode.错误.getCode());
+        }
+        sc.setAttribute(voteid,vsa);
+        return result;
     }
 
 //    @Param("url")String url
@@ -65,7 +75,5 @@ public class VoteStatisticsController extends BaseController{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
 }
