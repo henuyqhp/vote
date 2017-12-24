@@ -25,7 +25,7 @@
 			</div>
 
 <div class="top-buttons-agileinfo">
-<a href="Login.jsp" >管理员登录</a><a href="Vote.jsp" >创建投票</a><a href="Result.jsp" class="active">投票结果</a><a href="Quit.jsp" >退出</a>
+<a href="Login.jsp" >管理员登录</a><a href="user/Vote.jsp" >创建投票</a><a href="Result.jsp" class="active">投票结果</a><a href="Quit.jsp" >退出</a>
 </div>
 <h1>投票结果</h1>
 

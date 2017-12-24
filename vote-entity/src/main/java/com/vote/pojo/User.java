@@ -29,8 +29,10 @@ public class User {
         this.modifytime = modifytime;
         this.createtime = createtime;
     }
-
     public User() {
+        super();
+    }
+    public User(Object user) {
         super();
     }
 

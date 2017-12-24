@@ -25,19 +25,23 @@
 			</div>
 
 <div class="top-buttons-agileinfo">
-<a href="Login.jsp" class="active">管理员登录</a><a href="Vote.jsp" >创建投票</a><a href="Result.jsp">投票结果</a><a href="Quit.jsp" >退出</a>
+<a href="Login.jsp" class="active">管理员登录</a><a href="user/Vote.jsp" >创建投票</a><a href="Result.jsp">投票结果</a><a href="Quit.jsp" >退出</a>
 </div>
-<h1>管理员登录</h1>
+<h1>用户登陆</h1>
 <div class="main-agileits">
 <!--form-stars-here-->
 		<div class="form-w3-agile">
-			<form action="/admin/login.do" method="post">
-					<input type="text" name="username" placeholder="管理员" required="" />
-					<input type="password" name="password" placeholder="密码" required="" />
+			<form action="/user/login.do" method="post">
+					<input type="text" name="username" placeholder="用户账号" required="" />
+					<input type="password" name="password" placeholder="用户密码" required="" />
 				<div class="submit-w3l">
 					<input type="submit" value="登录">
+
 				</div>
 			</form>
+			<div class="submit-w3l">
+				<a href="user/NewUser.jsp"><input type="submit" value="注册"></a>
+			</div>
 		</div>
 		</div>
 
