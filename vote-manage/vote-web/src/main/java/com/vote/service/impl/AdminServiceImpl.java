@@ -45,6 +45,7 @@ public class AdminServiceImpl implements AdminService{
             return pageData;
         }
         pageData.put(Const.USERTYPE, UserType.管理员.getCode());
+        pageData.put("user",user);
         pageData.put("username",user.getUsername());
         pageData.put(Const.CODE,ResponseCode.成功.getCode());
         return pageData;
@@ -58,7 +59,7 @@ public class AdminServiceImpl implements AdminService{
         vote.setDescription(pd.getString("voteDescription"));
         vote.setStarttime(DateTimeUtil.strToDate2(pd.getString("startTime")));
         vote.setEndtime(DateTimeUtil.strToDate2(pd.getString("endTime")));
-//        vote.setEcreator(pd.getInt("userId"));
+        vote.setEcreator(pd.getInt("userid"));
         vote.setEnable(Enable.可用.getCode());
         int count = voteMapper.insert(vote);
         if (count>0){

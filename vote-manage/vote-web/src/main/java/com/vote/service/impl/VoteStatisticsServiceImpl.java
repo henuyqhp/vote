@@ -13,6 +13,7 @@ import com.vote.util.enums.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("voteStatisticsService")
@@ -26,9 +27,12 @@ public class VoteStatisticsServiceImpl implements VoteStatisticsService {
     private VoteStatisticsMapper voteStatisticsMapper;
     @Override
     public PageData getBollotJSON(String name) {
+        System.out.println(name);
         PageData pageData = new PageData();
         Vote vote = voteStatisticsMapper.selectVoteBy(name);
+        System.out.println(vote.getId());
         List<VoteItem> voteItemList = voteItemMapper.selectListByVoteId(vote.getId());
+        System.out.println(voteItemList);
         if (vote != null && voteItemList != null){
             pageData.put("vote",vote);
             pageData.put("voteItemList",voteItemList);
@@ -54,5 +58,19 @@ public class VoteStatisticsServiceImpl implements VoteStatisticsService {
             return ResponseCode.成功;
         }
         return ResponseCode.错误;
+    }
+
+    @Override
+    public boolean isVote(PageData pageData) {
+        int count = voteStatisticsMapper.selectHaveLogin(pageData.getInt("vote"),pageData.getString("cip"));
+        System.out.println(count + "---------");
+        return count > 0 ? true : false;
+    }
+
+    @Override
+    public List<Vote> getVote(Integer id) {
+        List<Vote> list = new ArrayList<>();
+        list = voteStatisticsMapper.selectVotes(id);
+        return list;
     }
 }

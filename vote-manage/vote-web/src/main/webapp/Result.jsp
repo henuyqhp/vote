@@ -12,8 +12,36 @@
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="css/snow.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-table.js"></script>
 </head>
+<script>
+    $(function(){
+        $("#tb tbody tr:even").css("color","#3333ff");
+        $("#tb tbody tr:odd").css("background","#99ffff");
+    });
+    window.operateEvents = {
+        'click .RoleOfA': function (e, value, row, index) {
+            voteS(row.name)
+        },
+        'click .RoleOfB': function (e, value, row, index) {
+            look(row.name)
+        }
+    }
+    function voteS(name) {
+        $(location).attr('href', '/show.do?name='+name);
+
+    }
+	function look(name) {
+        $(location).attr('href', '/vote.do?name='+name);
+    }
+    function operateFormatter(value, row, index) {
+        return [
+            '<button type="button" class="RoleOfA btn btn-default  btn-sm" style="margin-right:15px;">查看投票</button>',
+            '<button type="button" class="RoleOfB btn btn-default  btn-sm" style="margin-right:15px;">生成投票</button>'
+        ].join('');
+    }
+</script>
 <body>
 <div class="snow-container">
 			  <div class="snow foreground"></div>
@@ -31,7 +59,16 @@
 
 <div class="main-agileits">
 	<div class="form-w3-agile">
-		
+		<table data-toggle="table" data-url="/getlist.do" data-height="246" data-striped="true">
+			<thead>
+			<tr>
+				<th data-field="id">编号</th>
+				<th data-field="name">名称</th>
+				<th data-field="enable">是否可用</th>
+				<th data-field="operate" title="查看投票情况" data-events="operateEvents" data-formatter="operateFormatter">查看投票情况</th>
+			</tr>
+			</thead>
+		</table>
 	</div>
 </div> 
 <%%>

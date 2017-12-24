@@ -36,8 +36,9 @@ public class LoginController extends BaseController{
             System.out.print(pageData);
             System.out.print(pageData.getInt(Const.CODE));
             if (pageData.getInt(Const.CODE) == ResponseCode.成功.getCode()){
-                User user = new User(pageData.get(Const.USER));
+                User user = (User) pageData.get("user");
                 session.setAttribute("userName",pageData.get("username"));
+                session.setAttribute("user",user);
                 System.out.print(pageData.get("username"));
                 System.out.print("登录成功");
                 return "/user/Vote";
@@ -78,8 +79,9 @@ public class LoginController extends BaseController{
 
         Map<String,Object> result = new HashMap<>();
         String a = (String) session.getAttribute("userName");
+        User user = (User) session.getAttribute("user");
         PageData pd = this.getPageData();
-        pd.put("userid",a);
+        pd.put("userid",user.getId());
         System.out.println(pd);
         System.out.println("投票名称"+pd.get("voteName"));
         ResponseCode code = null;

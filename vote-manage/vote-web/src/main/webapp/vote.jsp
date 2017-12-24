@@ -159,7 +159,7 @@
                                         </div>
                                     </div>
                                     <input type="submit" name="submit" value="投票">
-                                    <%--<button id="start" onclick="doVote()">投票</button>--%>
+                                    <button id="start" onclick="doVote()">投票</button>
                                 </form>
 
                             </div>

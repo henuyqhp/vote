@@ -1,6 +1,8 @@
 package com.vote.controller.backend;
 
 import com.vote.controller.base.BaseController;
+import com.vote.pojo.User;
+import com.vote.pojo.Vote;
 import com.vote.service.backend.VoteStatisticsService;
 import com.vote.util.Const;
 import com.vote.util.PageData;
@@ -20,7 +22,9 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -37,8 +41,24 @@ public class VoteStatisticsController extends BaseController{
         result.put("pd",pageData);
         return result;
     }
+    @RequestMapping("show.do")
+    public ModelAndView show(){
+        ModelAndView mv = this.getModelAndView();
+        String name = request.getParameter("name");
+        mv.setViewName("/jsp/a/show");
+        mv.addObject("name",name);
+        return mv;
+    }
 
-
+    @RequestMapping(value = "getlist.do")
+    @ResponseBody
+    public List<Vote> getList(){
+        List list = new ArrayList();
+        User user = (User) session.getAttribute("user");
+        list = voteStatisticsService.getVote(user.getId());
+        System.out.println(list);
+        return list;
+    }
 
     @RequestMapping("vote.do")
     public ModelAndView vote(){

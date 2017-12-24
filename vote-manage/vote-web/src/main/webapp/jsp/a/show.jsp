@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,19 +18,26 @@
 </head>
 <body>
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<input type="hidden" name="name" id="name" value="${name}">
 <div id="main" style="width: 600px;height:400px;"></div>
-<button onclick="goUpdate(1)">dianji</button>
+<button onclick="goUpdate()">dianji</button>
 <script type="text/javascript">
     var map = new Array();
-    function goUpdate(name){
+    function goUpdate(){
+
+        var name =$("#name").val()
+        alert(name + "++++")
         try {
-            var time  = setInterval('a('+name+')',1000*2);
+            var fut = 'a('+name+')'
+            var time  = setInterval(fut,1000);
             window.map.push(time)
         }catch (err){
             window.clearInterval(window.map.pop())
         }
     }
-
+    function cc() {
+        alert(444)
+    }
     function a(name) {
         $.post("/getBollotJSON.do",{name:name},function (data) {
             if(data.pd.code == 1){

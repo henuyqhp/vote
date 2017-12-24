@@ -150,7 +150,7 @@
 
   <select id="selectListByVoteId" resultMap="BaseResultMap" parameterType="int">
     SELECT * FROM vote_item
-    WHERE parent = #{voteid} and enable = 1
+    WHERE parent = #{voteid}
   </select>
 
 </mapper>
