@@ -3,7 +3,6 @@ package com.vote.controller.admin;
 import com.github.pagehelper.PageInfo;
 import com.vote.controller.base.BaseController;
 import com.vote.pojo.User;
-import com.vote.pojo.Vote;
 import com.vote.pojo.VoteItem;
 import com.vote.service.backend.AdminService;
 import com.vote.util.Const;
@@ -61,16 +60,17 @@ public class LoginController extends BaseController{
         System.out.println(pd);
         PageData pageData =null;
         try {
+            System.out.println("注册用户");
             pageData = adminService.newUser(pd);
+            System.out.println("注册用户");
             result.putAll(pageData);
             System.out.println("注册成功");
-            return "Login";
+            return "NewUser";
         } catch (Exception e) {
             logger.error(e.toString());
             result.put(Const.CODE, ResponseCode.异常.getCode());
         }
-
-        return "redicted/";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "createVote.do",method = RequestMethod.POST)
@@ -93,8 +93,8 @@ public class LoginController extends BaseController{
             logger.error(e.toString());
             result.put(Const.CODE,ResponseCode.异常.getCode());
         }
-        result.put(Const.CODE,code.getCode());
-        return "redicted/";
+        /*result.put(Const.CODE,code.getCode());*/
+        return "../redicted/";
     }
     @RequestMapping(value = "InsertVoteItemBefore.do")
     public ModelAndView InsertVoteItemBefore(){
@@ -106,8 +106,12 @@ public class LoginController extends BaseController{
             int voteid = adminService.selectVoteId(string);
             System.out.println("投票id"+voteid);
             List<VoteItem> list = adminService.voteItemBefore(voteid);
-            System.out.println("选项列表"+list.toString());
-            mv.addObject("voteList",list);
+            System.out.println("选项列表"+list);
+            for (VoteItem voteitem :list
+                 ) {
+                System.out.println(voteitem);
+            }
+            mv.addObject("list",list);
             PageInfo<VoteItem> pageInfo = new PageInfo<>(list);
         }catch (Exception e){
             mv.addObject(Const.CODE,ResponseCode.错误.getCode());
@@ -117,7 +121,7 @@ public class LoginController extends BaseController{
         return mv;
     }
     @RequestMapping(value = "newvoteItem.do",method = RequestMethod.POST)
-    public String newVoteItem(){
+    public Map<String,Object> newVoteItem(){
 
         Map<String,Object> result = new HashMap<>();
         User user = (User)session.getAttribute(Const.USER);
@@ -130,14 +134,13 @@ public class LoginController extends BaseController{
         ResponseCode code = null;
         try{
             code = adminService.createVoteItem(pd);
-            return "VoteItemList";
         }catch (Exception e){
             e.printStackTrace();
             logger.error(e.toString());
             result.put(Const.CODE,ResponseCode.异常.getCode());
         }
-
-        return "redicted/";
+        result.put(Const.CODE,code.getCode());
+        return result;
     }
 
 }

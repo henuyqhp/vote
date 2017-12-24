@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
     <link href="../css/snow.css" rel="stylesheet" type="text/css" media="all" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
     <script type="text/javascript">
 
         function selectPhoto() {
@@ -53,7 +55,7 @@
                         </div>
 
                         <div class="ibox-content">
-                            <form action="/user/newvoteItem.do" method="post" id="addVoteItem" name="addVoteItem">
+                            <form action="/user/InsertVoteItemBefore.do" method="post" id="addVoteItem" name="addVoteItem">
                                 <div class="form-group">
                                     <label for="Account" class="sr-only">用户名</label>
                                     <input type="text" placeholder="请输入选项名字" id="Account" name="voteItemName" class="form-control">
@@ -63,14 +65,15 @@
                                     <input type="text" placeholder="请输入选项描述" id="BianHao" name="voteItemDescription" class="form-control">
                                 </div>
                                 <div class="submit-w3l">
-                                    <input type="submit" value="添加选项">
+                                    <%--<<input type="submit" value="添加选项">--%>
+                                    <button onclick="a()">添加选项</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <%--<div class="row">
+            <div class="row">
                 <div class="col-xs-12 col-sm-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
@@ -86,19 +89,19 @@
                                 </tr>
                                 </thead>
 
-                                <tbody style="color: white">
+                                <tbody style="color: white;background: #ffffff">
                                 <c:choose>
-                                    <c:when test="${ voteList!= null}">
+                                    <c:when test="${ list!= null}">
                                         <c:forEach var="item" items="${list}">
                                             <tr>
-                                                <td>${item.name}</td>
-                                                <td>${item.description}</td>
-                                                <td>${item.parent}</td>
+                                                <td style="background: black">${item.name}</td>
+                                                <td style="background: black">${item.description}</td>
+                                                <td style="background: black">${item.parent}</td>
                                             </tr>
                                         </c:forEach>
                                     </c:when>
-                                    <c:otherwise style="color: white">
-                                        <h2>暂无选项，请添加!</h2>
+                                    <c:otherwise >
+                                        <h2 style="color: white">暂无选项，请添加!</h2>
                                     </c:otherwise>
                                 </c:choose>
                                 </tbody>
@@ -106,9 +109,41 @@
                         </div>
                     </div>
                 </div>
-            </div>--%>
+            </div>
     </div>
 
 </div>
 </body>
+
+<script type="text/javascript">
+
+    function a() {
+        alert(5555)
+        $.post("/user/newvoteItem.do",$("#addVoteItem").serialize(),function (data) {
+            alert(data.code);
+            if (data.code==1){
+                alert("添加成功");
+                $("#addVoteItem").submit();
+                window.location.reload();
+            }else{
+                alert("添加失败");
+            }
+        });
+        alert(666)
+    }
+    function addItem() {
+        alert("开始添加")
+        
+        $.post("/user/newvoteItem.do",function (data) {
+            alert(data.code);
+            if (data.code==1){
+                alert("添加成功");
+                $("#addVoteItem").submit();
+                window.location.reload();
+            }else{
+                alert("添加失败");
+            }
+        });
+    }
+</script>
 </html>

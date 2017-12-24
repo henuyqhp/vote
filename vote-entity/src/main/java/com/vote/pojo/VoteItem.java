@@ -21,6 +21,21 @@ public class VoteItem {
 
     private Integer parent;
 
+    @Override
+    public String toString() {
+        return "VoteItem{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", img='" + img + '\'' +
+                ", ballot=" + ballot +
+                ", modifytime=" + modifytime +
+                ", createtime=" + createtime +
+                ", enable=" + enable +
+                ", parent=" + parent +
+                '}';
+    }
+
     public VoteItem(Integer id, String name, String description, String img, Integer ballot, Date modifytime, Date createtime, Integer enable, Integer parent) {
         this.id = id;
         this.name = name;

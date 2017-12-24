@@ -34,14 +34,14 @@
         <form action="/user/newUser.do" method="post">
             <input type="text" name="username" placeholder="用户名" required="" />
             <input type="password" name="password" placeholder="密码" required="" />
-            <input type="text" name="telphone" placeholder="请输入11位手机号码" pattern="\d{11}" required="" />
+            <input type="text" name="telphone" placeholder="请输入11位手机号码"  required="" />
 
             <div class="submit-w3l">
                 <input type="submit" value="点击注册">
             </div>
         </form>
         <div class="submit-w3l">
-            <a href="../Login.jsp"><input type="submit" value="登陆"></a>
+            <a href="../Login.jsp" onclick="success()"><input type="submit" value="登陆"></a>
         </div>
     </div>
 </div>
@@ -50,7 +50,12 @@
     <p>© 2017 Design By </p>
 </div>
 
-<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../js/jquery-2.1.4.min.js">
+
+    function success() {
+        alert("注册成功!");
+    }
+</script>
 
 </body>
 </html>

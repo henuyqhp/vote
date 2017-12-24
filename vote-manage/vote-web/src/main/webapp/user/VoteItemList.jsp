@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 
 <html>
@@ -47,54 +46,64 @@
 <h1>创建投票</h1>
 <div class="main-agileits">
     <div class="form-w3-agile">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12">
+        <div class="row" >
+            <div class="col-xs-12 col-sm-12 " >
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h1 style="color: white">选项列表</h1>
-                    </div>
+
+
                     <div class="ibox-content">
-
-                        <table class="table table-striped">
-                            <thead>
-                            <tr style="color: white">
-                                <th>选项名字</th>
-                                <th>选项描述</th>
-                                <th>投票id</th>
-                            </tr>
-                            </thead>
-
-                            <tbody style="color: white">
-                            <c:choose>
-                                <c:when test="${voteList!= null}">
-                                    <c:forEach var="item" items="${list}">
-                                        <tr>
-                                            <td>${item.name}</td>
-                                            <td>${item.description}</td>
-                                            <td>${item.parent}</td>
-                                        </tr>
-                                    </c:forEach>
-                                </c:when>
-                                <c:otherwise style="color: white">
-                                    <h1>暂无选项，请添加!</h1>
-                                </c:otherwise>
-                            </c:choose>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="submit-w3l">
-                        <a href="/user/InsertVoteItemBefore.do"><button>查询选项</button></a>
-                    </div>
-                    <div class="submit-w3l">
-                        <a href="success.jsp"><button>创建投票</button></a>
-                    </div>
-                    <div class="submit-w3l">
-                        <<a href="success.jsp"><button>添加选项</button></a>
+                        <form action="/user/newvoteItem.do" method="post" id="addVoteItem" name="addVoteItem">
+                            <input type="submit">
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h1 style="color: white">选项列表</h1>
+                                </div>
+                                <div class="ibox-content">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr style="color: white">
+                                            <th>选项名字</th>
+                                            <th>选项描述</th>
+                                            <th>投票id</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody style="color: white;background: #ffffff">
+                                        <c:choose>
+                                            <c:when test="${ list!= null}">
+                                                <c:forEach var="item" items="${list}">
+                                                    <tr>
+                                                        <td style="background: black">${item.name}</td>
+                                                        <td>${item.description}</td>
+                                                        <td>${item.parent}</td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </c:when>
+                                            <c:otherwise >
+                                                <h2 style="color: white">暂无选项，请添加!</h2>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="submit-w3l">
+                                    <a href="success.jsp"><button>创建投票</button></a>
+                                </div>
+                                <div class="submit-w3l">
+                                    <<a href="success.jsp"><button>添加选项</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
 </div>
 </body>

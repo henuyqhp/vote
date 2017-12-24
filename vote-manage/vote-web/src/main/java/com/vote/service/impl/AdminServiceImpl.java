@@ -72,10 +72,10 @@ public class AdminServiceImpl implements AdminService{
     public PageData newUser(PageData pd) {
         PageData pageData = new PageData();
         User user = new User();
-        user.setUsername(pd.getString("userName"));
+        user.setUsername(pd.getString("username"));
         user.setPassword(pd.getString("password"));
         user.setEnable(Enable.可用.getCode());
-        user.setPhone(pd.getInt("telphone"));
+        user.setPhone(Integer.parseInt(pd.getString("telphone").trim()));
         int count = userMapper.insert(user);
         if (count>0){
             pageData.put(Const.CODE,ResponseCode.成功.getCode());
