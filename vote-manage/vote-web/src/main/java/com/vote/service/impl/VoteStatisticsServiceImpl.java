@@ -1,8 +1,10 @@
 package com.vote.service.impl;
 
+import com.vote.dao.LogVoteMapper;
 import com.vote.dao.VoteItemMapper;
 import com.vote.dao.VoteMapper;
 import com.vote.dao.VoteStatisticsMapper;
+import com.vote.pojo.LogVote;
 import com.vote.pojo.Vote;
 import com.vote.pojo.VoteItem;
 import com.vote.service.backend.VoteStatisticsService;
@@ -16,7 +18,7 @@ import java.util.List;
 @Service("voteStatisticsService")
 public class VoteStatisticsServiceImpl implements VoteStatisticsService {
     @Autowired
-    private VoteMapper voteMapper;
+    private LogVoteMapper logVoteMapper;
     @Autowired
     private VoteItemMapper voteItemMapper;
 
@@ -35,5 +37,22 @@ public class VoteStatisticsServiceImpl implements VoteStatisticsService {
             pageData.put("code",ResponseCode.错误.getCode());
         }
         return pageData;
+    }
+
+    @Override
+    public ResponseCode doVote(PageData pageData) {
+        int result = voteStatisticsMapper.upDateBoallot(pageData.getInt("voteItem"));
+        LogVote logVote = new LogVote();
+        logVote.setName(pageData.getString("cname"));
+        logVote.setIp(pageData.getString("cip"));
+        logVote.setEnable(1);
+        logVote.setType(0);
+        logVote.setVote(pageData.getInt("vote"));
+        logVote.setVoteitem(pageData.getInt("voteItem"));
+        int result2 = logVoteMapper.insert(logVote);
+        if (result >0 && result2 >0){
+            return ResponseCode.成功;
+        }
+        return ResponseCode.错误;
     }
 }
