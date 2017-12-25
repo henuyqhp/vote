@@ -64,7 +64,7 @@
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
       #{endtime,jdbcType=TIMESTAMP}, #{headimg,jdbcType=VARCHAR}, #{linkurl,jdbcType=VARCHAR}, 
       #{ecreator,jdbcType=INTEGER}, #{ballotsum,jdbcType=INTEGER}, #{itemnum,jdbcType=INTEGER}, 
-      #{visitcapacity,jdbcType=INTEGER}, #{modifytime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{visitcapacity,jdbcType=INTEGER}, #{modifytime,jdbcType=TIMESTAMP}, now(),
       #{enable,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.vote.pojo.Vote">
@@ -148,7 +148,7 @@
         #{modifytime,jdbcType=TIMESTAMP},
       </if>
       <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="enable != null">
         #{enable,jdbcType=INTEGER},
@@ -236,4 +236,11 @@
       enable = #{enable,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="selectVoteIdByName" parameterType="string" resultType="int">
+    SELECT id
+    FROM vote
+    WHERE name = #{votename}
+  </select>
 </mapper>

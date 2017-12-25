@@ -16,4 +16,6 @@ public interface VoteMapper {
     int updateByPrimaryKeyWithBLOBs(Vote record);
 
     int updateByPrimaryKey(Vote record);
+
+    int selectVoteIdByName(String string);
 }

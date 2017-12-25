@@ -127,4 +127,15 @@
       createTime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="checkUserId" parameterType="com.vote.util.PageData" resultType="int" >
+      SELECT count(1) FROM user
+      WHERE username=#{username}
+  </select>
+  <select id="selectLogin" parameterType="com.vote.util.PageData" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user
+    WHERE username=#{username}
+    AND password =#{password}
+  </select>
 </mapper>
