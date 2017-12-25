@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<link rel="shortcut icon" type="image/x-icon" href="/images/favion.png" />
 <head>
     <title>javaweb大作业</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">

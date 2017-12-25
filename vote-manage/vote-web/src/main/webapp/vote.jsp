@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html>
-<link rel="shortcut icon" type="image/x-icon" href="images/favion.png" />
 <head>
     <title>欢迎投票</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -31,7 +30,7 @@
         });
         function vote() {
             var name = $("#name").val()
-            $(location).attr('href', '/show.do?name='+name);
+            $(location).attr('href','/show.do?name='+name);
         }
     </script>
 </head>
@@ -61,10 +60,10 @@
                                     <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                                 </ul>
                             </div>
-                           <div>
-                               <p>投票详情</p>
-                               <img src="images/tt.png" onclick="vote()">
-                           </div>
+                            <div>
+                                <p>投票详情</p>
+                                <img src="images/tt.png" onclick="vote()">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -159,6 +158,7 @@
                                         </div>
                                     </div>
                                     <input type="submit" name="submit" value="投票">
+                                    <button id="start" class="btn btn-warning" onclick="doVote()">投票</button>
                                 </form>
 
                             </div>
