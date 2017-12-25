@@ -67,7 +67,7 @@ public class LoginController extends BaseController{
             System.out.println("注册用户");
             result.putAll(pageData);
             System.out.println("注册成功");
-            return "NewUser";
+            return "../Login";
         } catch (Exception e) {
             logger.error(e.toString());
             result.put(Const.CODE, ResponseCode.异常.getCode());

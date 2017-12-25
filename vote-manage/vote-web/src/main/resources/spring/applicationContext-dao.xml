@@ -69,6 +69,4 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSession"></property>
     </bean>
 
-
-
 </beans>

@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>javaweb大作业</title>
-
+    <link rel="shortcut icon" type="image/x-icon" href="/images/faivon.png" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
     <link href="css/snow.css" rel="stylesheet" type="text/css" media="all" />

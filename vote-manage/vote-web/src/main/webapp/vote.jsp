@@ -3,6 +3,8 @@
 <!doctype html>
 <html>
 <head>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/faivon.png" />
+
     <title>欢迎投票</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -61,7 +63,7 @@
                                 </ul>
                             </div>
                             <div>
-                                <p>投票详情</p>
+                                <p style="color: #ce8483">投票详情</p>
                                 <img src="images/tt.png" onclick="vote()">
                             </div>
                         </div>

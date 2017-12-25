@@ -11,16 +11,16 @@
     <name>vote-web Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>com.vote</groupId>-->
-            <!--<artifactId>vote-service</artifactId>-->
-            <!--<version>1.0-SNAPSHOT</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.vote</groupId>-->
-            <!--<artifactId>vote-dao</artifactId>-->
-            <!--<version>1.0-SNAPSHOT</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.vote</groupId>
+            <artifactId>vote-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vote</groupId>
+            <artifactId>vote-dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>

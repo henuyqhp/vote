@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>已经投过票</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/faivon.png" />
 </head>
 <body>
 <h1>您已经投过票，请勿重复投票。谢谢合作</h1>

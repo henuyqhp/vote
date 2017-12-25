@@ -93,6 +93,7 @@ public class AdminServiceImpl implements AdminService{
         voteItem.setDescription(pd.getString("voteItemDescription"));
         voteItem.setEnable(Enable.可用.getCode());
         voteItem.setParent(pd.getInt("voteid"));
+        voteItem.setBallot(0);
         int count = voteItemMapper.insert(voteItem);
         if (count>0){
             return ResponseCode.成功;

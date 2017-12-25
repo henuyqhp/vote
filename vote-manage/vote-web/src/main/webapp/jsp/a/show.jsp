@@ -10,8 +10,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/faivon.png" />
     <meta charset="utf-8">
-    <title>ECharts</title>
+    <title>投票结果</title>
     <!-- 引入 echarts.js -->
     <script src="../../js/echarts.js"></script>
     <script src="../../js/jquery-1.11.3.js"></script>

@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/faivon.png" />
+    <title>投票失败</title>
 </head>
 <body>
 <h2>投票失败</h2>
