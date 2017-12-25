@@ -79,8 +79,7 @@
 			</thead>
 		</table>
 	</div>
-</div> 
-<%%>
+</div>
 	<div class="copyright w3-agile" >
 		<p>© 2017 Design By </p>
 	</div>
