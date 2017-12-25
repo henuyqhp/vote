@@ -30,7 +30,7 @@
 <h1>退出</h1>
 
 <div class="main-agileits">
-	<form action="UserQuit" methond="post"  >
+	<form action="/user/quit.do" methond="get"  >
 		<div class="submit-w3l">
 			<input type="submit" value="退出">
 		</div>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
@@ -145,4 +146,16 @@ public class LoginController extends BaseController{
         return result;
     }
 
+
+    @RequestMapping(value = "quit.do",method = RequestMethod.GET)
+    public void quit(){
+
+        User user = (User) session.getAttribute(Const.USER);
+        session.removeAttribute(Const.USER);
+        try {
+            response.sendRedirect("Vote.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

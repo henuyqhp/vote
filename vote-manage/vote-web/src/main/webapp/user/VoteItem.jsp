@@ -118,7 +118,7 @@
 <script type="text/javascript">
 
     function a() {
-        alert(5555)
+
         $.post("/user/newvoteItem.do",$("#addVoteItem").serialize(),function (data) {
             alert(data.code);
             if (data.code==1){
@@ -129,7 +129,6 @@
                 alert("添加失败");
             }
         });
-        alert(666)
     }
     function addItem() {
         alert("开始添加")
