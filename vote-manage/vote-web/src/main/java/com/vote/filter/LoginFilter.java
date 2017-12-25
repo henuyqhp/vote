@@ -47,6 +47,7 @@ public class LoginFilter implements Filter{
                 return;
             }
         }
+        chain.doFilter(servletRequest,servletResponse);
     }
 
     @Override

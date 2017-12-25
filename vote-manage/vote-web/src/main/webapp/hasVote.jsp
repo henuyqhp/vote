@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<link rel="shortcut icon" type="image/x-icon" href="images/favion.png" />
 <head>
     <title>已经投过票</title>
 </head>
