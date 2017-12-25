@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html>
+<link rel="shortcut icon" type="image/x-icon" href="images/favion.png" />
 <head>
     <title>欢迎投票</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -28,6 +29,10 @@
             $("#cip").val(cip)
             $("#cname").val(cname)
         });
+        function vote() {
+            var name = $("#name").val()
+            $(location).attr('href', '/show.do?name='+name);
+        }
     </script>
 </head>
 <body>
@@ -56,6 +61,10 @@
                                     <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                                 </ul>
                             </div>
+                           <div>
+                               <p>投票详情</p>
+                               <img src="images/tt.png" onclick="vote()">
+                           </div>
                         </div>
                     </div>
                 </div>
@@ -70,6 +79,7 @@
                         <div class="pricing-bottom two">
                             <div class="pricing-bottom-bottom">
                                 <form action="/doVote.do" method="post">
+                                    <input type="hidden" id="name" name="name" value="${pd.vote.name}">
                                     <input type="hidden" id="vote" name="vote" value="${pd.vote.id}">
                                     <input type="hidden" id="code" name="code" value="${pd.code}">
                                     <input type="hidden" id="cip" name="cip" >
@@ -149,7 +159,6 @@
                                         </div>
                                     </div>
                                     <input type="submit" name="submit" value="投票">
-                                    <button id="start" class="btn btn-warning" onclick="doVote()">投票</button>
                                 </form>
 
                             </div>
