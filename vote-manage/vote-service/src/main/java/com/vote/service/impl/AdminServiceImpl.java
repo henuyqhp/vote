@@ -1,6 +1,5 @@
 package com.vote.service.impl;
 
-import com.github.pagehelper.Page;
 import com.vote.dao.UserMapper;
 import com.vote.dao.VoteItemMapper;
 import com.vote.dao.VoteMapper;
@@ -94,7 +93,6 @@ public class AdminServiceImpl implements AdminService{
         voteItem.setDescription(pd.getString("voteItemDescription"));
         voteItem.setEnable(Enable.可用.getCode());
         voteItem.setParent(pd.getInt("voteid"));
-        voteItem.setBallot(0);
         int count = voteItemMapper.insert(voteItem);
         if (count>0){
             return ResponseCode.成功;

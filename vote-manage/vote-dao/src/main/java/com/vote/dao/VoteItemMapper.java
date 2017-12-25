@@ -18,4 +18,6 @@ public interface VoteItemMapper {
     int updateByPrimaryKey(VoteItem record);
 
     List<VoteItem> selectListByVoteId(Integer voteid);
+
+    List<VoteItem> selectListByVoteParentId(int voteid);
 }

@@ -23,6 +23,13 @@
     from vote_item
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectListByVoteParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    *
+    from vote_item
+    where parent = #{voteid}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from vote_item
     where id = #{id,jdbcType=INTEGER}
@@ -33,8 +40,8 @@
       createTime, enable, parent
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{img,jdbcType=VARCHAR}, #{ballot,jdbcType=INTEGER}, #{modifytime,jdbcType=TIMESTAMP}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{enable,jdbcType=INTEGER}, #{parent,jdbcType=INTEGER}
+      #{img,jdbcType=VARCHAR}, #{ballot,jdbcType=INTEGER}, now(),
+      now(), #{enable,jdbcType=INTEGER}, #{parent,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.vote.pojo.VoteItem">
@@ -143,7 +150,7 @@
 
   <select id="selectListByVoteId" resultMap="BaseResultMap" parameterType="int">
     SELECT * FROM vote_item
-    WHERE paerent = #{voteid} and enable = 1
+    WHERE parent = #{voteid}
   </select>
 
 </mapper>

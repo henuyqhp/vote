@@ -46,8 +46,10 @@ public class LoginFilter implements Filter{
                 response.sendRedirect( "/");
                 return;
             }
+        }else{
+            chain.doFilter(servletRequest,servletResponse);
         }
-        chain.doFilter(servletRequest,servletResponse);
+
     }
 
     @Override

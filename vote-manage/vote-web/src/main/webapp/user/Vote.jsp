@@ -12,13 +12,6 @@
 <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="../css/snow.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript">
-	
-	function selectPhoto() {
-		var url = $("#select option:selected").val();
-		$("#img").attr("src", url);
-	}
-</script>
 <style>
 	.wh_font{color:white;}
 	tr td:first{text-align: center;}
