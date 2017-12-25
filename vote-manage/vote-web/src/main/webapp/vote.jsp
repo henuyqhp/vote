@@ -9,11 +9,11 @@
     <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
     <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link href="css/font-awesome.css" rel="stylesheet"> <!-- Font-awesome-CSS -->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/jquery.raccordion.js" type="text/javascript"></script>
-    <script src="js/jquery.animation.easing.js" type="text/javascript"></script>
+    <link href="css/styleeee.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/bootstrap.css" type="text/css"/>
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap.js"></script>
     <link rel="stylesheet" type="text/css" href="css/raccordion.css" />
     <script type="text/javascript">
         $(window).load(function () {
@@ -23,20 +23,10 @@
                 sliderHeight: 300,
                 autoCollapse: false
             });
-            alert(returnCitySN["cip"]+','+returnCitySN["cname"])
             cip = returnCitySN["cip"];
             cname = returnCitySN["cname"]
             $("#cip").val(cip)
             $("#cname").val(cname)
-//            $.post("/isVote.do",{ip:cip,city:cname,voteid:12},function (data) {
-//                if (data.code == 1){
-//                    alert("开始投票")
-//                    $("#Main-Content").show();
-//                }else{
-//                    alert("已经投过票")
-//                    $("#Main-Content").hide();
-//                }
-//            })
         });
     </script>
 </head>
@@ -159,7 +149,7 @@
                                         </div>
                                     </div>
                                     <input type="submit" name="submit" value="投票">
-                                    <button id="start" onclick="doVote()">投票</button>
+                                    <button id="start" class="btn btn-warning" onclick="doVote()">投票</button>
                                 </form>
 
                             </div>
@@ -174,5 +164,7 @@
         <p>© 2017 技术支持 伟哥的98k 随大大的7.62mm </p>
     </div>
 </div>
+<script src="js/jquery.raccordion.js" type="text/javascript"></script>
+<script src="js/jquery.animation.easing.js" type="text/javascript"></script>
 </body>
 </html>

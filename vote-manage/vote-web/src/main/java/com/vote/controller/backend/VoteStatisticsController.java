@@ -102,10 +102,13 @@ public class VoteStatisticsController extends BaseController{
         }
     }
     //    @Param("url")String url
-    @RequestMapping("createEWM.do")
+    @RequestMapping(value = "createEWM.do")
     public void createEWM(){
 //        String url = "http://10.12.26.49:8080/jsp/a/show.jsp";
-        String url = "http://10.12.26.49:8080/vote.do?name=1";
+//        String url = "http://10.12.26.49:8080/vote.do?name=1";
+        String url = request.getParameter("url");
+        url = "http://10.12.26.49:8080/" +url;
+        System.out.println(url + " ---");
         ByteArrayOutputStream out= QRCode.from(url).to(ImageType.PNG).stream();
         response.reset();
         response.setContentType("image/png");

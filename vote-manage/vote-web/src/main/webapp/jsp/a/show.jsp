@@ -20,13 +20,13 @@
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <input type="hidden" name="name" id="name" value="${name}">
 <div id="main" style="width: 600px;height:400px;"></div>
-<button onclick="goUpdate()">dianji</button>
+
 <script type="text/javascript">
     var map = new Array();
+    goUpdate()
     function goUpdate(){
 
         var name =$("#name").val()
-        alert(name + "++++")
         try {
             var fut = 'a('+name+')'
             var time  = setInterval(fut,1000);
@@ -35,9 +35,7 @@
             window.clearInterval(window.map.pop())
         }
     }
-    function cc() {
-        alert(444)
-    }
+
     function a(name) {
         $.post("/getBollotJSON.do",{name:name},function (data) {
             if(data.pd.code == 1){
